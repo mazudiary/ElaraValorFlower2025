@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elara, The Finest Soul</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        overflow: hidden;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          to top,
+          #87ceeb,
+          #ffffff
+        ); /* Sky blue to white */
+        position: relative;
+      }
+
+      /* Animated Gradient Motion */
+      @keyframes bg-float {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url(""); /* Replace with cloud PNG or SVG */
+        background-repeat: repeat-x;
+        background-size: contain;
+        animation: move-clouds 60s linear infinite;
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes move-clouds {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 1000px 0;
+        }
+      }
+
+      @keyframes twinkle {
+        0% {
+          opacity: 0.1;
+        }
+        100% {
+          opacity: 0.3;
+        }
+      }
+
+      /* Floating Particles (firefly style) */
+      .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        animation: float-particles 8s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes float-particles {
+        0% {
+          transform: translateY(100vh) translateX(0);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) translateX(20px);
+          opacity: 0;
+        }
+      }
+
+      .bird-container {
+        position: absolute;
+        top: 10%;
+        left: -100px;
+        transform: scale(0.4);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .bird {
+        background-image: url("./assets/bird-cells-new.svg");
+        background-size: auto 100%;
+        width: 88px;
+        height: 125px;
+        animation: fly-cycle 1s steps(10) infinite;
+        filter: invert(34%) sepia(55%) saturate(427%) hue-rotate(141deg)
+          brightness(93%) contrast(91%);
+      }
+
+      @keyframes fly-cycle {
+        100% {
+          background-position: -900px 0;
+        }
+      }
+
+      .falling-envelope {
+        position: absolute;
+        top: 50px;
+        width: 320px;
+        height: 210px;
+        transform: scale(0.5);
+        transition: transform 1s ease;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .drop {
+        animation: drop-envelope 3s ease-in-out forwards;
+      }
+
+      @keyframes drop-envelope {
+        0% {
+          top: 200px;
+          transform: scale(0.5);
+        }
+        50% {
+          top: 40vh;
+          transform: scale(1);
+        }
+        100% {
+          top: 65vh;
+          transform: scale(1.5);
+        }
+      }
+
+      .envelope {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #e95f55;
+        overflow: hidden;
+      }
+
+      .envelope__letter {
+        position: absolute;
+        left: 5%;
+        top: 42%;
+        width: 90%;
+        height: 80%;
+        background: white;
+        color: #b03a68;
+        font-family: "Brush Script MT", cursive;
+        font-size: 18px;
+        text-align: center;
+        padding: 10px;
+        line-height: 1.6;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: transform 0.6s, opacity 0.6s;
+        transform: translateY(0);
+        z-index: 2;
+      }
+
+      .envelope__triangle--flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 160px solid transparent;
+        border-right: 160px solid transparent;
+        border-bottom: 90px solid #c13e3a;
+        transform-origin: top;
+        transition: transform 0.6s ease;
+        z-index: 3;
+      }
+
+      .open .envelope__triangle--flap {
+        transform: rotateX(180deg);
+      }
+
+      .open .envelope__letter {
+        opacity: 1;
+        transform: translateY(-40%);
+      }
+
+      .shooting-star {
+        position: absolute;
+        width: 2px;
+        height: 80px;
+        background: linear-gradient(white, transparent);
+        opacity: 0;
+        transform: rotate(45deg);
+        animation: shoot 6s linear infinite;
+      }
+
+      @keyframes shoot {
+        0% {
+          left: -100px;
+          top: -100px;
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        100% {
+          left: 120vw;
+          top: 100vh;
+          opacity: 0;
+        }
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .bird {
+          width: 50px;
+          height: 70px;
+        }
+        .falling-envelope {
+          width: 200px;
+          height: 140px;
+        }
+        .envelope__letter {
+          font-size: 10px;
+        }
+        .envelope__triangle--flap {
+          border-left: 100px solid transparent;
+          border-right: 100px solid transparent;
+          border-bottom: 60px solid #c13e3a;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Flying Bird with Envelope -->
+    <div class="bird-container" id="birdContainer">
+      <div class="bird"></div>
+      <div class="falling-envelope" id="envelope">
+        <div class="envelope" id="flapBox">
+          <div class="envelope__triangle--flap"></div>
+          <div class="envelope__letter" id="message">
+            The finest soul,<br />
+            May ALLAH <br />
+            Be with you at every step you take, protect you when you fail, guide
+            you in every decison you make, help you when life gets tough
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      for (let i = 0; i < 40; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.animationDelay = `${Math.random() * 10}s`;
+        particle.style.width = `${Math.random() * 4 + 2}px`;
+        particle.style.height = particle.style.width;
+        document.body.appendChild(particle);
+      }
+
+      const birdContainer = document.getElementById("birdContainer");
+      const envelope = document.getElementById("envelope");
+      const flapBox = document.getElementById("flapBox");
+      const message = document.getElementById("message");
+      const openSound = document.getElementById("openSound");
+
+      const screenWidth = window.innerWidth;
+      const dropPoint = screenWidth * 0.3;
+
+      let position = -100;
+      const speed = 2;
+
+      function flyBird() {
+        if (position < screenWidth + 100) {
+          position += speed;
+          birdContainer.style.left = position + "px";
+
+          if (position >= dropPoint && !envelope.classList.contains("drop")) {
+            envelope.classList.add("drop");
+            birdContainer.removeChild(envelope);
+            document.body.appendChild(envelope);
+            envelope.style.left = position + "px";
+          }
+
+          requestAnimationFrame(flyBird);
+        }
+      }
+
+      envelope.addEventListener("click", () => {
+        if (!flapBox.classList.contains("open")) {
+          flapBox.classList.add("open");
+          openSound.currentTime = 0;
+          openSound.play();
+        }
+      });
+
+      flyBird();
+    </script>
+  </body>
+</html>

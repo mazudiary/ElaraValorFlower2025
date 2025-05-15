@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flower of Elara's</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+      }
+
+      body {
+        perspective: 1000px;
+
+        background: radial-gradient(
+          circle,
+          rgba(59, 101, 117, 0.4) 0%,
+          rgba(67, 67, 133, 0.8) 54%,
+          rgba(45, 45, 47, 1) 90%
+        );
+      }
+
+      body,
+      div,
+      ul,
+      li {
+        backface-visibility: hidden;
+      }
+
+      div,
+      ul,
+      li,
+      svg {
+        will-change: transform;
+        transform-style: preserve-3d;
+      }
+
+      li,
+      svg {
+        transform-origin: center top;
+      }
+
+      .gradient {
+        opacity: 0;
+        height: 0;
+        width: 0;
+      }
+
+      .birthday-message {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: white;
+        font-size: 2.2em;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px #00000060;
+        padding: 10px 20px;
+        background: rgba(255, 192, 203, 0.2);
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+        animation: fadeIn 2s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateX(-50%) translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+      .lotus {
+        transform-origin: center center;
+        transform: rotateX(70deg);
+        animation: rotate 20000ms linear infinite forwards;
+        position: absolute;
+        top: calc(50% - 18px);
+        left: calc(50% - 18px);
+        width: 36px;
+        height: 36px;
+      }
+
+      .lotus ul {
+        position: relative;
+        width: 36px;
+        height: 36px;
+      }
+
+      .lotus li {
+        position: absolute;
+      }
+
+      .lotus li svg {
+        display: block;
+        height: auto;
+      }
+
+      .lotus li svg path {
+        fill: url(#gradient);
+      }
+
+      .lotus:nth-child(1) li:nth-child(1) {
+        transform: rotateZ(45deg) rotateX(15deg) rotateY(5deg);
+      }
+      .lotus:nth-child(1) li:nth-child(2) {
+        transform: rotateZ(90deg) rotateX(15deg) rotateY(5deg);
+      }
+      .lotus:nth-child(1) li:nth-child(3) {
+        transform: rotateZ(135deg) rotateX(15deg) rotateY(5deg);
+      }
+      .lotus:nth-child(1) li:nth-child(4) {
+        transform: rotateZ(180deg) rotateX(15deg) rotateY(5deg);
+      }
+      .lotus:nth-child(1) li:nth-child(5) {
+        transform: rotateZ(225deg) rotateX(15deg) rotateY(5deg);
+      }
+      .lotus:nth-child(1) li:nth-child(6) {
+        transform: rotateZ(270deg) rotateX(15deg) rotateY(5deg);
+      }
+      .lotus:nth-child(1) li:nth-child(7) {
+        transform: rotateZ(315deg) rotateX(15deg) rotateY(5deg);
+      }
+      .lotus:nth-child(1) li:nth-child(8) {
+        transform: rotateZ(360deg) rotateX(15deg) rotateY(5deg);
+      }
+
+      .lotus:nth-child(1) svg {
+        width: 72px;
+        transform: rotateX(75deg);
+        animation: bloom 1000ms cubic-bezier(0, 0.75, 0.25, 1) forwards;
+      }
+
+      .lotus:nth-child(2) li:nth-child(1) {
+        transform: rotateZ(60deg) rotateX(30deg) rotateY(5deg);
+      }
+      .lotus:nth-child(2) li:nth-child(2) {
+        transform: rotateZ(120deg) rotateX(30deg) rotateY(5deg);
+      }
+      .lotus:nth-child(2) li:nth-child(3) {
+        transform: rotateZ(180deg) rotateX(30deg) rotateY(5deg);
+      }
+      .lotus:nth-child(2) li:nth-child(4) {
+        transform: rotateZ(240deg) rotateX(30deg) rotateY(5deg);
+      }
+      .lotus:nth-child(2) li:nth-child(5) {
+        transform: rotateZ(300deg) rotateX(30deg) rotateY(5deg);
+      }
+      .lotus:nth-child(2) li:nth-child(6) {
+        transform: rotateZ(360deg) rotateX(30deg) rotateY(5deg);
+      }
+
+      .lotus:nth-child(2) svg {
+        width: 60px;
+        transform: rotateX(60deg);
+        animation: bloom 1100ms cubic-bezier(0, 0.75, 0.25, 1) 150ms forwards;
+      }
+
+      .lotus:nth-child(3) li:nth-child(1) {
+        transform: rotateZ(120deg) rotateX(60deg) rotateY(5deg);
+      }
+      .lotus:nth-child(3) li:nth-child(2) {
+        transform: rotateZ(240deg) rotateX(60deg) rotateY(5deg);
+      }
+      .lotus:nth-child(3) li:nth-child(3) {
+        transform: rotateZ(360deg) rotateX(60deg) rotateY(5deg);
+      }
+
+      .lotus:nth-child(3) svg {
+        width: 48px;
+        transform: rotateX(30deg);
+        animation: bloom 1200ms cubic-bezier(0, 0.75, 0.25, 1) 300ms forwards;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotateX(70deg) rotateZ(0deg);
+        }
+        to {
+          transform: rotateX(70deg) rotateZ(360deg);
+        }
+      }
+
+      @keyframes bloom {
+        to {
+          transform: none;
+        }
+      }
+
+      .next-button {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #ff69b4, #ff1493);
+        color: white;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 12px 28px;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+        transition: all 0.3s ease;
+        z-index: 10;
+        animation: fadeIn 2.5s ease-in-out;
+      }
+
+      .next-button:hover {
+        background: linear-gradient(135deg, #ff1493, #ff69b4);
+        box-shadow: 0 6px 20px rgba(255, 20, 147, 0.6);
+        transform: translateX(-50%) scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="lotus">
+      <ul>
+        <!-- 8 petals -->
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+      </ul>
+    </div>
+
+    <div class="lotus">
+      <ul>
+        <!-- 6 petals -->
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+      </ul>
+    </div>
+
+    <div class="lotus">
+      <ul>
+        <!-- 3 petals -->
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+        <li>
+          <svg viewBox="0 0 72 200">
+            <path
+              d="M0,100 C0,66.6666667 12,33.3333333 36,0 C60,33.3333333 72,66.6666667 72,100 C72,133.333333 60,166.666667 36,200 C12,166.666667 0,133.333333 0,100 Z"
+            ></path>
+          </svg>
+        </li>
+      </ul>
+    </div>
+
+    <svg class="gradient">
+      <defs>
+        <radialGradient
+          cx="50%"
+          cy="5%"
+          fx="50%"
+          fy="5%"
+          r="110%"
+          id="gradient"
+        >
+          <stop stop-color="#FCFDF2" offset="0%"></stop>
+          <stop stop-color="#E9BABA" offset="100%"></stop>
+        </radialGradient>
+      </defs>
+    </svg>
+    <div class="birthday-message">
+      Happy Flower Day, Elara Valor 🌷<br />
+      A Flower Born in the Heart's Blossom 🌸💖
+    </div>
+
+    <a href="moon.html" class="next-button">Next →</a>
+  </body>
+</html>
